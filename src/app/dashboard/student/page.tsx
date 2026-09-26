@@ -62,7 +62,7 @@ export default function StudentDashboard() {
     if (match && match[2].length === 11) {
       videoId = match[2];
     }
-    return videoId ? `https://www.youtube.com/embed/${videoId}?autoplay=1` : url;
+    return videoId ? `https://www.youtube-nocookie.com/embed/${videoId}` : url;
   };
 
   if (loading) return <div className="p-8 text-blue font-bold">Loading your courses...</div>;
