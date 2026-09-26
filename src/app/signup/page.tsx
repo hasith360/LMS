@@ -36,11 +36,7 @@ export default function SignupPage() {
     }
 
     // Redirect to the appropriate dashboard
-    if (role === 'teacher') {
-      router.push('/dashboard/teacher');
-    } else {
-      router.push('/dashboard/student');
-    }
+    router.push(`/dashboard/${role}`);
   };
 
   return (
@@ -113,11 +109,9 @@ export default function SignupPage() {
                 >
                   <option value="student">Student</option>
                   <option value="teacher">Teacher</option>
+                  <option value="admin">Admin (For Testing)</option>
                 </select>
               </div>
-              <p className="mt-1 text-xs text-blue/60">
-                (Note: Admins are managed internally and cannot sign up here)
-              </p>
             </div>
 
             <div>
