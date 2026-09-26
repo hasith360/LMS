@@ -1,13 +1,14 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { BookOpen, PlayCircle, Clock, Award } from 'lucide-react';
+import { BookOpen, PlayCircle, X } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 
 export default function StudentDashboard() {
   const [user, setUser] = useState<any>(null);
   const [enrollments, setEnrollments] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [playingVideo, setPlayingVideo] = useState<{title: string, url: string} | null>(null);
 
   useEffect(() => {
     const init = async () => {
@@ -23,7 +24,6 @@ export default function StudentDashboard() {
   }, []);
 
   const fetchMyCourses = async (userId: string) => {
-    // Fetch enrollments, join with courses, and join courses with recordings
     const { data, error } = await supabase
       .from('enrollments')
       .select(`
@@ -49,6 +49,16 @@ export default function StudentDashboard() {
       setEnrollments(data);
     }
     setLoading(false);
+  };
+
+  const getYouTubeEmbedUrl = (url: string) => {
+    let videoId = '';
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = url.match(regExp);
+    if (match && match[2].length === 11) {
+      videoId = match[2];
+    }
+    return videoId ? `https://www.youtube.com/embed/${videoId}?autoplay=1` : url;
   };
 
   if (loading) return <div className="p-8 text-blue font-bold">Loading your courses...</div>;
@@ -92,7 +102,6 @@ export default function StudentDashboard() {
               const course = enrollment.courses;
               const recordings = course.recordings || [];
               
-              // Sort recordings by date (newest first)
               recordings.sort((a: any, b: any) => new Date(b.session_date).getTime() - new Date(a.session_date).getTime());
 
               return (
@@ -120,14 +129,17 @@ export default function StudentDashboard() {
                     ) : (
                       <ul className="space-y-3">
                         {recordings.slice(0, 5).map((rec: any) => (
-                          <li key={rec.id} className="bg-white border border-gray rounded-lg p-3 hover:border-gold transition-colors group">
-                            <a href={rec.video_url} target="_blank" rel="noopener noreferrer" className="flex items-center">
-                              <PlayCircle className="h-8 w-8 text-gold mr-3 group-hover:scale-110 transition-transform" />
+                          <li key={rec.id} className="bg-white border border-gray rounded-lg hover:border-gold transition-colors group">
+                            <button 
+                              onClick={() => setPlayingVideo({ title: rec.title, url: getYouTubeEmbedUrl(rec.video_url) })}
+                              className="w-full text-left flex items-center p-3"
+                            >
+                              <PlayCircle className="h-8 w-8 text-gold mr-3 group-hover:scale-110 transition-transform shrink-0" />
                               <div className="flex-1 min-w-0">
                                 <p className="text-sm font-bold text-blue truncate">{rec.title}</p>
                                 <p className="text-xs text-blue/60 mt-0.5">{new Date(rec.session_date).toLocaleDateString()}</p>
                               </div>
-                            </a>
+                            </button>
                           </li>
                         ))}
                       </ul>
@@ -139,6 +151,32 @@ export default function StudentDashboard() {
           </div>
         )}
       </div>
+
+      {/* Video Player Modal */}
+      {playingVideo && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 animate-in fade-in duration-200">
+          <div className="absolute inset-0 bg-blue/90" onClick={() => setPlayingVideo(null)}></div>
+          <div className="relative bg-[#14213D] w-full max-w-4xl rounded-xl overflow-hidden shadow-2xl ring-1 ring-white/20">
+            <div className="flex justify-between items-center p-4 border-b border-white/10 bg-[#14213D]">
+              <h3 className="text-white font-bold truncate pr-4">{playingVideo.title}</h3>
+              <button 
+                onClick={() => setPlayingVideo(null)} 
+                className="text-white/70 hover:text-white p-1 rounded-md hover:bg-white/10 transition-colors shrink-0"
+              >
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+            <div className="aspect-video w-full bg-black relative">
+              <iframe 
+                src={playingVideo.url} 
+                className="absolute top-0 left-0 w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   );
