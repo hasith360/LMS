@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { BookOpen, LayoutDashboard, Settings, LogOut, User, ShieldCheck, Menu, X } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
