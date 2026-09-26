@@ -13,6 +13,7 @@ export default function DashboardLayout({
 }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [userRole, setUserRole] = useState<string | null>(null);
+  const [userName, setUserName] = useState<string>('User');
   const router = useRouter();
 
   useEffect(() => {
@@ -20,10 +21,15 @@ export default function DashboardLayout({
       const { data } = await supabase.auth.getUser();
       if (data?.user) {
         setUserRole(data.user.user_metadata?.role || 'student');
+        setUserName(data.user.user_metadata?.full_name || 'User');
       }
     };
     fetchUser();
   }, []);
+
+  const getInitials = (name: string) => {
+    return name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase() || 'U';
+  };
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -117,11 +123,11 @@ export default function DashboardLayout({
         <header className="hidden md:flex h-16 bg-white border-b border-gray items-center justify-end px-8">
           <div className="flex items-center gap-4">
             <div className="text-sm font-medium text-blue text-right">
-              <div>Alex Student</div>
-              <div className="text-blue/60 text-xs">Student Account</div>
+              <div>{userName}</div>
+              <div className="text-blue/60 text-xs capitalize">{userRole || 'Student'} Account</div>
             </div>
             <div className="h-10 w-10 rounded-full bg-gold flex items-center justify-center text-blue font-bold">
-              AS
+              {getInitials(userName)}
             </div>
           </div>
         </header>
