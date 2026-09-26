@@ -1,69 +1,122 @@
-import Image from "next/image";
+import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="min-h-screen bg-white">
+      {/* Navbar */}
+      <header className="bg-blue text-white shadow-md">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between h-16 items-center">
+            <div className="flex-shrink-0 flex items-center">
+              <span className="font-bold text-2xl tracking-wider">
+                <span className="text-white">APEX</span>
+                <span className="text-gold ml-1">LMS</span>
+              </span>
+            </div>
+            <div className="flex space-x-4">
+              <Link href="/login" className="text-gray hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                Log In
+              </Link>
+              <Link href="/signup" className="bg-gold text-blue hover:bg-yellow-500 px-4 py-2 rounded-md text-sm font-bold transition-colors">
+                Sign Up
+              </Link>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </header>
+
+      {/* Hero Section */}
+      <main>
+        <div className="relative bg-gray pt-16 pb-32 flex items-center justify-center min-h-[70vh]">
+          <div className="absolute inset-0 bg-blue/5"></div>
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 className="text-4xl tracking-tight font-extrabold text-blue sm:text-5xl md:text-6xl">
+              <span className="block">Speak Better.</span>
+              <span className="block text-gold">Go Further.</span>
+            </h1>
+            <p className="mt-3 max-w-md mx-auto text-base text-blue/80 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+              Master German, French, and Italian with our premium online language courses. 
+              Join Apex Language College today and accelerate your learning journey.
+            </p>
+            <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
+              <div className="rounded-md shadow">
+                <Link href="/courses" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-bold rounded-md text-blue bg-gold hover:bg-yellow-500 md:py-4 md:text-lg md:px-10 transition-colors">
+                  Browse Courses
+                </Link>
+              </div>
+              <div className="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
+                <Link href="/signup" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-gold bg-blue hover:bg-blue/90 md:py-4 md:text-lg md:px-10 transition-colors">
+                  Student Portal
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Features Section */}
+        <div className="py-16 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center">
+              <h2 className="text-base text-gold font-semibold tracking-wide uppercase">Why Choose Apex?</h2>
+              <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-blue sm:text-4xl">
+                A better way to learn languages
+              </p>
+            </div>
+
+            <div className="mt-10">
+              <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
+                
+                {/* Feature 1 */}
+                <div className="bg-gray/20 rounded-lg p-6 border border-gray">
+                  <div className="w-12 h-12 bg-blue rounded-md flex items-center justify-center mb-4">
+                    <svg className="h-6 w-6 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-lg font-medium text-blue">High-Quality Video Lessons</h3>
+                  <p className="mt-2 text-base text-blue/70">
+                    Learn at your own pace with professionally recorded video lessons from expert native speakers.
+                  </p>
+                </div>
+
+                {/* Feature 2 */}
+                <div className="bg-gray/20 rounded-lg p-6 border border-gray">
+                  <div className="w-12 h-12 bg-blue rounded-md flex items-center justify-center mb-4">
+                    <svg className="h-6 w-6 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-lg font-medium text-blue">Comprehensive Resources</h3>
+                  <p className="mt-2 text-base text-blue/70">
+                    Access worksheets, PDF notes, and audio files specifically tailored for each lesson.
+                  </p>
+                </div>
+
+                {/* Feature 3 */}
+                <div className="bg-gray/20 rounded-lg p-6 border border-gray">
+                  <div className="w-12 h-12 bg-blue rounded-md flex items-center justify-center mb-4">
+                    <svg className="h-6 w-6 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                    </svg>
+                  </div>
+                  <h3 className="text-lg font-medium text-blue">Interactive Quizzes</h3>
+                  <p className="mt-2 text-base text-blue/70">
+                    Test your knowledge after every lesson and track your progress to fluency.
+                  </p>
+                </div>
+
+              </div>
+            </div>
+          </div>
         </div>
       </main>
+
+      {/* Footer */}
+      <footer className="bg-black text-gray py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p>&copy; {new Date().getFullYear()} Apex Language College. All rights reserved.</p>
+        </div>
+      </footer>
     </div>
   );
 }
