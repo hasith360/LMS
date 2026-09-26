@@ -53,6 +53,25 @@ export default function SignupPage() {
             </div>
 
             <div>
+              <label htmlFor="role" className="block text-sm font-medium text-blue">
+                I am signing up as a...
+              </label>
+              <div className="mt-1">
+                <select
+                  id="role"
+                  name="role"
+                  className="block w-full px-3 py-2 border border-gray rounded-md shadow-sm focus:outline-none focus:ring-gold focus:border-gold sm:text-sm text-blue bg-white"
+                >
+                  <option value="student">Student</option>
+                  <option value="teacher">Teacher</option>
+                </select>
+              </div>
+              <p className="mt-1 text-xs text-blue/60">
+                (Note: Admins are managed internally and cannot sign up here)
+              </p>
+            </div>
+
+            <div>
               <label htmlFor="password" className="block text-sm font-medium text-blue">
                 Password
               </label>

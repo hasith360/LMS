@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { BookOpen, LayoutDashboard, Settings, LogOut, User } from 'lucide-react';
+import { BookOpen, LayoutDashboard, Settings, LogOut, User, ShieldCheck } from 'lucide-react';
 
 export default function DashboardLayout({
   children,
@@ -18,14 +18,23 @@ export default function DashboardLayout({
         </div>
         
         <nav className="flex-1 px-4 py-6 space-y-2">
-          <Link href="/dashboard/student" className="flex items-center px-4 py-3 text-sm font-medium rounded-md bg-white/10 text-gold transition-colors">
-            <LayoutDashboard className="mr-3 h-5 w-5" />
-            Dashboard
+          {/* Quick links to preview all layouts for now */}
+          <p className="px-4 text-xs font-bold text-white/50 uppercase tracking-wider mb-2">Previews</p>
+          <Link href="/dashboard/student" className="flex items-center px-4 py-2 text-sm font-medium rounded-md text-white/70 hover:bg-white/5 hover:text-white transition-colors">
+            <LayoutDashboard className="mr-3 h-4 w-4" />
+            Student View
           </Link>
-          <Link href="/courses" className="flex items-center px-4 py-3 text-sm font-medium rounded-md text-white/70 hover:bg-white/5 hover:text-white transition-colors">
-            <BookOpen className="mr-3 h-5 w-5" />
-            My Courses
+          <Link href="/dashboard/teacher" className="flex items-center px-4 py-2 text-sm font-medium rounded-md text-white/70 hover:bg-white/5 hover:text-white transition-colors">
+            <BookOpen className="mr-3 h-4 w-4" />
+            Teacher View
           </Link>
+          <Link href="/dashboard/admin" className="flex items-center px-4 py-2 text-sm font-medium rounded-md text-white/70 hover:bg-white/5 hover:text-white transition-colors">
+            <ShieldCheck className="mr-3 h-4 w-4" />
+            Admin View
+          </Link>
+          
+          <div className="h-4"></div>
+          
           <Link href="/profile" className="flex items-center px-4 py-3 text-sm font-medium rounded-md text-white/70 hover:bg-white/5 hover:text-white transition-colors">
             <User className="mr-3 h-5 w-5" />
             Profile
