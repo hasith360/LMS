@@ -23,7 +23,8 @@ export default function TeacherDashboard() {
         setUser(user);
         fetchCourses(user.id);
       } else {
-        setLoading(false);
+        // Not logged in (or email not verified)! Redirect to login.
+        window.location.href = '/login';
       }
     };
     init();
