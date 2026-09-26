@@ -47,8 +47,11 @@ export default function TeacherDashboard() {
     setLoading(false);
   };
 
+  const [courseError, setCourseError] = useState('');
+
   const handleCreateCourse = async (e: React.FormEvent) => {
     e.preventDefault();
+    setCourseError('');
     if (!user) return;
     
     const { data, error } = await supabase.from('courses').insert([
@@ -60,6 +63,11 @@ export default function TeacherDashboard() {
         status: 'Published'
       }
     ]).select();
+
+    if (error) {
+      setCourseError(error.message);
+      return;
+    }
 
     if (data) {
       fetchCourses(user.id);
@@ -129,7 +137,8 @@ export default function TeacherDashboard() {
                 <option>Advanced</option>
               </select>
             </div>
-            <div className="md:col-span-4 flex justify-end mt-2">
+            <div className="md:col-span-4 flex flex-col items-end mt-2">
+              {courseError && <p className="text-red-500 text-sm mb-2 font-medium">{courseError}</p>}
               <button type="submit" className="bg-blue text-white font-bold px-6 py-2 rounded-md hover:bg-blue/90 transition-colors">
                 Save Course
               </button>
