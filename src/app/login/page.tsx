@@ -17,7 +17,7 @@ export default function LoginPage() {
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10 border border-gray">
-          <form className="space-y-6" action="#" method="POST">
+          <div className="space-y-6">
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-blue">
                 Email address
@@ -72,14 +72,14 @@ export default function LoginPage() {
             </div>
 
             <div>
-              <button
-                type="submit"
+              <Link
+                href="/dashboard/student"
                 className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-bold text-blue bg-gold hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gold transition-colors"
               >
-                Sign in
-              </button>
+                Sign in (Preview)
+              </Link>
             </div>
-          </form>
+          </div>
 
           <div className="mt-6">
             <div className="relative">
