@@ -1,94 +1,165 @@
-import { Users, BookOpen, ShieldCheck, UserCheck, Trash2 } from 'lucide-react';
+'use client';
+
+import { useState, useEffect } from 'react';
+import { Users, BookOpen, ShieldCheck, UserPlus, CheckCircle2 } from 'lucide-react';
+import { supabase } from '@/lib/supabase';
 
 export default function AdminDashboard() {
-  // Mock Data
-  const stats = [
-    { label: 'Total Students', value: '1,245', icon: Users },
-    { label: 'Pending Teachers', value: '4', icon: UserCheck },
-    { label: 'Total Courses', value: '12', icon: BookOpen },
-  ];
+  const [students, setStudents] = useState<any[]>([]);
+  const [courses, setCourses] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const recentUsers = [
-    { id: 1, name: 'Alex Student', email: 'alex@example.com', role: 'Student', status: 'Active' },
-    { id: 2, name: 'Maria Rossi', email: 'maria@example.com', role: 'Teacher', status: 'Pending' },
-    { id: 3, name: 'Hans Mueller', email: 'hans@example.com', role: 'Teacher', status: 'Active' },
-    { id: 4, name: 'John Doe', email: 'john@example.com', role: 'Student', status: 'Suspended' },
-  ];
+  // Enrollment Form State
+  const [enrollment, setEnrollment] = useState({ student_id: '', course_id: '' });
+  const [status, setStatus] = useState('');
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    // Fetch students from our new profiles table
+    const { data: studentData } = await supabase
+      .from('profiles')
+      .select('*')
+      .eq('role', 'student');
+      
+    // Fetch all courses
+    const { data: courseData } = await supabase
+      .from('courses')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (studentData) setStudents(studentData);
+    if (courseData) setCourses(courseData);
+    
+    // Auto-select first options if available
+    if (studentData?.length > 0 && courseData?.length > 0) {
+      setEnrollment({ student_id: studentData[0].id, course_id: courseData[0].id });
+    }
+    
+    setLoading(false);
+  };
+
+  const handleEnrollStudent = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('Enrolling...');
+
+    if (!enrollment.student_id || !enrollment.course_id) {
+      setStatus('Please select both a student and a course.');
+      return;
+    }
+
+    const { error } = await supabase.from('enrollments').insert([
+      {
+        student_id: enrollment.student_id,
+        course_id: enrollment.course_id
+      }
+    ]);
+
+    if (error) {
+      // Postgres error code 23505 is unique violation (already enrolled)
+      if (error.code === '23505') {
+        setStatus('Error: Student is already enrolled in this course!');
+      } else {
+        setStatus('Error: ' + error.message);
+      }
+    } else {
+      setStatus('Successfully Enrolled!');
+      setTimeout(() => setStatus(''), 3000);
+    }
+  };
+
+  if (loading) return <div className="p-8 text-blue font-bold">Loading Admin Dashboard...</div>;
 
   return (
-    <div className="max-w-5xl mx-auto">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-blue">Admin Dashboard</h1>
-        <p className="text-blue/70 mt-2">Platform-wide overview and user management.</p>
+    <div className="max-w-6xl mx-auto space-y-8 animate-in fade-in">
+      
+      {/* Header */}
+      <div>
+        <h1 className="text-3xl font-bold text-blue flex items-center">
+          <ShieldCheck className="mr-3 h-8 w-8 text-gold" />
+          Admin Dashboard
+        </h1>
+        <p className="text-blue/70 mt-2">Manage the platform, enroll students, and oversee courses.</p>
       </div>
 
-      {/* Stats Overview */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-        {stats.map((stat, i) => (
-          <div key={i} className="bg-white rounded-xl p-6 border border-gray shadow-sm flex items-center gap-4">
-            <div className="h-12 w-12 rounded-full bg-blue text-white flex items-center justify-center">
-              <stat.icon className="h-6 w-6 text-gold" />
-            </div>
-            <div>
-              <p className="text-3xl font-bold text-blue">{stat.value}</p>
-              <p className="text-sm font-medium text-blue/70">{stat.label}</p>
-            </div>
+      {/* Stats row */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray flex items-center gap-4">
+          <div className="p-4 bg-blue/10 rounded-lg text-blue">
+            <Users className="h-8 w-8" />
           </div>
-        ))}
+          <div>
+            <p className="text-sm font-bold text-blue/60 uppercase">Total Students</p>
+            <p className="text-3xl font-bold text-blue">{students.length}</p>
+          </div>
+        </div>
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray flex items-center gap-4">
+          <div className="p-4 bg-gold/20 rounded-lg text-gold">
+            <BookOpen className="h-8 w-8" />
+          </div>
+          <div>
+            <p className="text-sm font-bold text-blue/60 uppercase">Active Courses</p>
+            <p className="text-3xl font-bold text-blue">{courses.length}</p>
+          </div>
+        </div>
       </div>
 
-      {/* User Management */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray overflow-hidden mb-10">
-        <div className="px-6 py-5 border-b border-gray flex justify-between items-center bg-gray/10">
-          <h2 className="text-lg font-bold text-blue">Recent Users</h2>
-          <button className="text-sm text-blue/70 hover:text-blue font-medium">View All Users</button>
+      {/* Enroll Student Form */}
+      <div className="bg-white rounded-xl shadow-sm border border-gray overflow-hidden">
+        <div className="px-6 py-5 border-b border-gray bg-gray/10">
+          <h2 className="text-lg font-bold text-blue flex items-center">
+            <UserPlus className="mr-2 h-5 w-5 text-gold" />
+            Assign Student to a Course
+          </h2>
         </div>
-        <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse">
-            <thead>
-              <tr className="bg-gray/5 border-b border-gray text-blue/70 text-sm">
-                <th className="p-4 font-medium">Name</th>
-                <th className="p-4 font-medium">Email</th>
-                <th className="p-4 font-medium">Role</th>
-                <th className="p-4 font-medium">Status</th>
-                <th className="p-4 font-medium text-right">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray">
-              {recentUsers.map((user) => (
-                <tr key={user.id} className="hover:bg-gray/5 transition-colors">
-                  <td className="p-4 font-bold text-blue">{user.name}</td>
-                  <td className="p-4 text-blue/70 text-sm">{user.email}</td>
-                  <td className="p-4">
-                    <span className={`text-xs font-bold px-2 py-1 rounded-full ${
-                      user.role === 'Teacher' ? 'bg-blue/10 text-blue' : 'bg-gold/20 text-gold'
-                    }`}>
-                      {user.role}
-                    </span>
-                  </td>
-                  <td className="p-4">
-                    <span className={`text-xs font-bold px-2 py-1 rounded-full ${
-                      user.status === 'Active' ? 'bg-green-100 text-green-700' : 
-                      user.status === 'Pending' ? 'bg-yellow-100 text-yellow-700' : 
-                      'bg-red-100 text-red-700'
-                    }`}>
-                      {user.status}
-                    </span>
-                  </td>
-                  <td className="p-4 flex justify-end gap-2">
-                    {user.status === 'Pending' && (
-                      <button className="p-2 bg-green-100 text-green-700 rounded hover:bg-green-200 transition-colors" title="Approve">
-                        <ShieldCheck className="h-4 w-4" />
-                      </button>
-                    )}
-                    <button className="p-2 bg-red-100 text-red-700 rounded hover:bg-red-200 transition-colors" title="Suspend/Delete">
-                      <Trash2 className="h-4 w-4" />
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="p-6">
+          {(students.length === 0 || courses.length === 0) ? (
+            <p className="text-blue/70 italic">You need at least 1 student and 1 course in the database to enroll someone.</p>
+          ) : (
+            <form onSubmit={handleEnrollStudent} className="space-y-4 max-w-2xl">
+              <div>
+                <label className="block text-sm font-medium text-blue mb-1">Select Student</label>
+                <select 
+                  required
+                  value={enrollment.student_id} 
+                  onChange={e => setEnrollment({...enrollment, student_id: e.target.value})} 
+                  className="w-full px-3 py-2 border border-gray rounded-md focus:outline-none focus:ring-gold focus:border-gold text-sm bg-white"
+                >
+                  {students.map(s => (
+                    <option key={s.id} value={s.id}>{s.full_name || s.email} (Student)</option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-blue mb-1">Select Course</label>
+                <select 
+                  required
+                  value={enrollment.course_id} 
+                  onChange={e => setEnrollment({...enrollment, course_id: e.target.value})} 
+                  className="w-full px-3 py-2 border border-gray rounded-md focus:outline-none focus:ring-gold focus:border-gold text-sm bg-white"
+                >
+                  {courses.map(c => (
+                    <option key={c.id} value={c.id}>{c.title}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="pt-2">
+                <button type="submit" className="bg-blue text-white font-bold py-2 px-6 rounded-md hover:bg-blue/90 transition-colors">
+                  Enroll Student
+                </button>
+              </div>
+
+              {status && (
+                <div className={`p-3 mt-4 text-sm font-bold rounded-md ${status.includes('Error') ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'}`}>
+                  {status}
+                </div>
+              )}
+            </form>
+          )}
         </div>
       </div>
     </div>
