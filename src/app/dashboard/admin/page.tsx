@@ -33,8 +33,7 @@ export default function AdminDashboard() {
     if (studentData) setStudents(studentData);
     if (courseData) setCourses(courseData);
     
-    // Auto-select first options if available
-    if (studentData?.length > 0 && courseData?.length > 0) {
+    if (studentData && courseData && studentData.length > 0 && courseData.length > 0) {
       setEnrollment({ student_id: studentData[0].id, course_id: courseData[0].id });
     }
     
