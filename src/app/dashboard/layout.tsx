@@ -12,7 +12,18 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [userRole, setUserRole] = useState<string | null>(null);
   const router = useRouter();
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const { data } = await supabase.auth.getUser();
+      if (data?.user) {
+        setUserRole(data.user.user_metadata?.role || 'student');
+      }
+    };
+    fetchUser();
+  }, []);
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -29,19 +40,28 @@ export default function DashboardLayout({
       </div>
       
       <nav className="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
-        <p className="px-4 text-xs font-bold text-white/50 uppercase tracking-wider mb-2">Previews</p>
-        <Link href="/dashboard/student" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center px-4 py-2 text-sm font-medium rounded-md text-white/70 hover:bg-white/5 hover:text-white transition-colors">
-          <LayoutDashboard className="mr-3 h-4 w-4" />
-          Student View
-        </Link>
-        <Link href="/dashboard/teacher" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center px-4 py-2 text-sm font-medium rounded-md text-white/70 hover:bg-white/5 hover:text-white transition-colors">
-          <BookOpen className="mr-3 h-4 w-4" />
-          Teacher View
-        </Link>
-        <Link href="/dashboard/admin" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center px-4 py-2 text-sm font-medium rounded-md text-white/70 hover:bg-white/5 hover:text-white transition-colors">
-          <ShieldCheck className="mr-3 h-4 w-4" />
-          Admin View
-        </Link>
+        <p className="px-4 text-xs font-bold text-white/50 uppercase tracking-wider mb-2">Main Menu</p>
+        
+        {userRole === 'student' && (
+          <Link href="/dashboard/student" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center px-4 py-2 text-sm font-medium rounded-md text-white/70 hover:bg-white/5 hover:text-white transition-colors">
+            <LayoutDashboard className="mr-3 h-4 w-4" />
+            My Dashboard
+          </Link>
+        )}
+
+        {userRole === 'teacher' && (
+          <Link href="/dashboard/teacher" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center px-4 py-2 text-sm font-medium rounded-md text-white/70 hover:bg-white/5 hover:text-white transition-colors">
+            <BookOpen className="mr-3 h-4 w-4" />
+            Teacher Dashboard
+          </Link>
+        )}
+
+        {userRole === 'admin' && (
+          <Link href="/dashboard/admin" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center px-4 py-2 text-sm font-medium rounded-md text-white/70 hover:bg-white/5 hover:text-white transition-colors">
+            <ShieldCheck className="mr-3 h-4 w-4" />
+            Admin Dashboard
+          </Link>
+        )}
         
         <div className="h-4"></div>
         

@@ -14,7 +14,19 @@ export default function AdminDashboard() {
   const [status, setStatus] = useState('');
 
   useEffect(() => {
-    fetchData();
+    const init = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        if (user.user_metadata?.role !== 'admin') {
+          window.location.href = `/dashboard/${user.user_metadata?.role || 'student'}`;
+          return;
+        }
+        fetchData();
+      } else {
+        window.location.href = '/login';
+      }
+    };
+    init();
   }, []);
 
   const fetchData = async () => {

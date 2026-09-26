@@ -20,6 +20,10 @@ export default function TeacherDashboard() {
     const init = async () => {
       const { data: { user } } = await supabase.auth.getUser();
       if (user) {
+        if (user.user_metadata?.role !== 'teacher') {
+          window.location.href = `/dashboard/${user.user_metadata?.role || 'student'}`;
+          return;
+        }
         setUser(user);
         fetchCourses(user.id);
       } else {
