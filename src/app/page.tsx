@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import HeroSlider from '@/components/HeroSlider';
-import { Youtube, Facebook, Linkedin, MessageCircle } from 'lucide-react';
 
 export default function Home() {
   return (
@@ -189,16 +188,24 @@ export default function Home() {
               </p>
               <div className="flex space-x-3 pt-2">
                 <a href="#" className="text-red-600 hover:opacity-80 transition-opacity">
-                  <Youtube className="w-6 h-6" fill="currentColor" />
+                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fillRule="evenodd" d="M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.746 22 12 22 12s0 3.255-.418 4.814a2.504 2.504 0 0 1-1.768 1.768c-1.56.419-7.814.419-7.814.419s-6.255 0-7.814-.419a2.505 2.505 0 0 1-1.768-1.768C2 15.255 2 12 2 12s0-3.255.417-4.814a2.507 2.507 0 0 1 1.768-1.768C5.744 5 11.998 5 11.998 5s6.255 0 7.814.418ZM15.194 12 10 15V9l5.194 3Z" clipRule="evenodd" />
+                  </svg>
                 </a>
                 <a href="#" className="text-blue-600 hover:opacity-80 transition-opacity">
-                  <Facebook className="w-6 h-6" fill="currentColor" />
+                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fillRule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clipRule="evenodd" />
+                  </svg>
                 </a>
                 <a href="#" className="text-green-600 hover:opacity-80 transition-opacity">
-                  <MessageCircle className="w-6 h-6" fill="currentColor" />
+                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fillRule="evenodd" d="M12 2C6.48 2 2 6.48 2 12c0 2.17.7 4.19 1.94 5.83L3 22l4.28-.94A9.95 9.95 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.41 14.16c-.22.62-1.27 1.16-1.74 1.21-.43.05-.98.11-2.81-.65-2.2-1-3.64-3.23-3.75-3.38-.11-.15-.89-1.18-.89-2.25 0-1.07.56-1.6.76-1.82.2-.21.43-.27.58-.27s.29 0 .42.01c.14.01.32-.05.49.36.18.43.62 1.51.67 1.62.05.11.08.24.01.38-.07.14-.11.23-.22.34-.11.12-.23.25-.33.35-.11.1-.23.21-.11.42.12.21.54.89 1.15 1.43.79.7 1.45.92 1.66 1.03.21.11.34.09.47-.05.13-.15.56-.65.71-.88.15-.22.3-.18.5-.11.2.07 1.25.59 1.46.7.21.11.35.16.4.25.05.09.05.54-.17 1.16z" clipRule="evenodd" />
+                  </svg>
                 </a>
                 <a href="#" className="text-blue-700 hover:opacity-80 transition-opacity">
-                  <Linkedin className="w-6 h-6" fill="currentColor" />
+                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fillRule="evenodd" d="M19.056 3.14a.973.973 0 0 0-1.116-.271L3.02 8.358a.97.97 0 0 0-.074 1.78l4.462 2.019 1.139 3.518a.97.97 0 0 0 1.637.378l2.368-2.368 4.29 2.146a.97.97 0 0 0 1.344-.657l3.69-11.07a.97.97 0 0 0-.82-1.264Zm-10.45 7.6 7.42-4.637-5.594 5.344a.97.97 0 0 0-.256.49l-.491 2.456-1.079-3.653Z" clipRule="evenodd" />
+                  </svg>
                 </a>
               </div>
             </div>
