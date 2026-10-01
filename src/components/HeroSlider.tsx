@@ -2,9 +2,11 @@
 import { useState, useEffect } from 'react';
 
 const images = [
-  { src: '/images/passports.jpg', alt: 'Travel Passports' },
-  { src: '/images/hostess.jpg', alt: 'Cabin Crew' },
-  { src: '/images/airplane.jpg', alt: 'Airplane' },
+  { src: '/images/hero-bg1.png', alt: 'World Landmarks' },
+  { src: '/images/hero-bg2.png', alt: 'Travel Map and Accessories' },
+  { src: '/images/hero-bg3.png', alt: 'European Cities' },
+  { src: '/images/hero-bg4.jpg', alt: 'SriLankan Airlines' },
+  { src: '/images/hero-bg5.png', alt: 'Global Monuments' },
 ];
 
 export default function HeroSlider() {
