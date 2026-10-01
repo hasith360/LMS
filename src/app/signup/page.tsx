@@ -43,7 +43,7 @@ export default function SignupPage() {
     <div className="min-h-screen bg-gray flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center">
         <Link href="/" className="inline-block">
-          <img src="/logo-full.png" alt="Apex Language College" className="h-16 mx-auto object-contain rounded-lg" />
+          <img src="/logo-full.png" alt="Apex Language College" className="h-24 mx-auto object-contain rounded-lg" />
         </Link>
         <h2 className="mt-6 text-center text-3xl font-extrabold text-blue">
           Create a new account
