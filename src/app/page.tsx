@@ -53,7 +53,7 @@ export default function Home() {
 
             <div className="lg:w-1/2 flex gap-4 w-full px-4 sm:px-0 mt-8 lg:mt-0">
               <img src="/images/passports.jpg" alt="Travel Passports" className="w-1/2 object-cover aspect-[3/4] rounded-2xl shadow-2xl transform rotate-[-3deg] hover:rotate-0 transition-transform duration-300" />
-              <img src="/images/airplane.jpg" alt="Airplane" className="w-1/2 object-cover aspect-[3/4] rounded-2xl shadow-2xl transform rotate-[3deg] translate-y-6 hover:rotate-0 transition-transform duration-300" />
+              <img src="/images/hostess.jpg" alt="Cabin Crew" className="w-1/2 object-cover aspect-[3/4] rounded-2xl shadow-2xl transform rotate-[3deg] translate-y-6 hover:rotate-0 transition-transform duration-300" />
             </div>
 
           </div>
