@@ -34,7 +34,7 @@ export default function Home() {
                 <span className="block text-gold">Go Further.</span>
               </h1>
               <p className="mt-3 max-w-md mx-auto lg:mx-0 text-base text-blue/80 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-                Master German, French, and Italian with our premium online language courses. 
+                Master European and Asian languages with our premium online courses. 
                 Join <span className="font-bold text-gold">Apex Language College</span> today and accelerate your learning journey.
               </p>
               <div className="mt-5 max-w-md mx-auto lg:mx-0 sm:flex sm:justify-center lg:justify-start md:mt-8">
@@ -122,11 +122,11 @@ export default function Home() {
             <div className="text-center mb-12">
               <h2 className="text-base text-gold font-semibold tracking-wide uppercase">Study Abroad</h2>
               <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-blue sm:text-4xl">
-                Your pathway to Europe
+                Your pathway to the world
               </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               <div className="relative rounded-2xl overflow-hidden shadow-lg group aspect-[4/5]">
                 <img src="/images/germany.jpg" alt="Study in Germany" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                 <div className="absolute inset-0 bg-gradient-to-t from-blue/90 via-blue/20 to-transparent flex items-end p-6">
@@ -145,6 +145,27 @@ export default function Home() {
                 <img src="/images/italy.jpg" alt="Study in Italy" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                 <div className="absolute inset-0 bg-gradient-to-t from-blue/90 via-blue/20 to-transparent flex items-end p-6">
                   <h3 className="text-2xl font-bold text-white tracking-wider">ITALY</h3>
+                </div>
+              </div>
+
+              <div className="relative rounded-2xl overflow-hidden shadow-lg group aspect-[4/5]">
+                <img src="/images/korea.jpg" alt="Study in South Korea" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-blue/90 via-blue/20 to-transparent flex items-end p-6">
+                  <h3 className="text-2xl font-bold text-white tracking-wider">SOUTH KOREA</h3>
+                </div>
+              </div>
+
+              <div className="relative rounded-2xl overflow-hidden shadow-lg group aspect-[4/5]">
+                <img src="/images/china.jpg" alt="Study in China" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-blue/90 via-blue/20 to-transparent flex items-end p-6">
+                  <h3 className="text-2xl font-bold text-white tracking-wider">CHINA</h3>
+                </div>
+              </div>
+
+              <div className="relative rounded-2xl overflow-hidden shadow-lg group aspect-[4/5]">
+                <img src="/images/russia.jpg" alt="Study in Russia" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-blue/90 via-blue/20 to-transparent flex items-end p-6">
+                  <h3 className="text-2xl font-bold text-white tracking-wider">RUSSIA</h3>
                 </div>
               </div>
             </div>
