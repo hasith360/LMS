@@ -129,47 +129,47 @@ export default function Home() {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="relative rounded-2xl overflow-hidden shadow-lg group aspect-[4/5]">
+              <a href="/pdfs/germany.pdf" target="_blank" rel="noopener noreferrer" className="relative rounded-2xl overflow-hidden shadow-lg group aspect-[4/5] block cursor-pointer">
                 <img src="/images/germany.jpg" alt="Study in Germany" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                 <div className="absolute inset-0 bg-gradient-to-t from-blue/90 via-blue/20 to-transparent flex items-end p-6">
                   <h3 className="text-2xl font-bold text-white tracking-wider">GERMANY</h3>
                 </div>
-              </div>
+              </a>
 
-              <div className="relative rounded-2xl overflow-hidden shadow-lg group aspect-[4/5]">
+              <a href="/pdfs/france.pdf" target="_blank" rel="noopener noreferrer" className="relative rounded-2xl overflow-hidden shadow-lg group aspect-[4/5] block cursor-pointer">
                 <img src="/images/france.jpg" alt="Study in France" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                 <div className="absolute inset-0 bg-gradient-to-t from-blue/90 via-blue/20 to-transparent flex items-end p-6">
                   <h3 className="text-2xl font-bold text-white tracking-wider">FRANCE</h3>
                 </div>
-              </div>
+              </a>
 
-              <div className="relative rounded-2xl overflow-hidden shadow-lg group aspect-[4/5]">
+              <a href="/pdfs/italy.pdf" target="_blank" rel="noopener noreferrer" className="relative rounded-2xl overflow-hidden shadow-lg group aspect-[4/5] block cursor-pointer">
                 <img src="/images/italy.jpg" alt="Study in Italy" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                 <div className="absolute inset-0 bg-gradient-to-t from-blue/90 via-blue/20 to-transparent flex items-end p-6">
                   <h3 className="text-2xl font-bold text-white tracking-wider">ITALY</h3>
                 </div>
-              </div>
+              </a>
 
-              <div className="relative rounded-2xl overflow-hidden shadow-lg group aspect-[4/5]">
+              <a href="/pdfs/korea.pdf" target="_blank" rel="noopener noreferrer" className="relative rounded-2xl overflow-hidden shadow-lg group aspect-[4/5] block cursor-pointer">
                 <img src="/images/korea.jpg" alt="Study in South Korea" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                 <div className="absolute inset-0 bg-gradient-to-t from-blue/90 via-blue/20 to-transparent flex items-end p-6">
                   <h3 className="text-2xl font-bold text-white tracking-wider">SOUTH KOREA</h3>
                 </div>
-              </div>
+              </a>
 
-              <div className="relative rounded-2xl overflow-hidden shadow-lg group aspect-[4/5]">
+              <a href="#" className="relative rounded-2xl overflow-hidden shadow-lg group aspect-[4/5] block cursor-pointer">
                 <img src="/images/china.jpg" alt="Study in China" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                 <div className="absolute inset-0 bg-gradient-to-t from-blue/90 via-blue/20 to-transparent flex items-end p-6">
                   <h3 className="text-2xl font-bold text-white tracking-wider">CHINA</h3>
                 </div>
-              </div>
+              </a>
 
-              <div className="relative rounded-2xl overflow-hidden shadow-lg group aspect-[4/5]">
+              <a href="#" className="relative rounded-2xl overflow-hidden shadow-lg group aspect-[4/5] block cursor-pointer">
                 <img src="/images/russia.jpg" alt="Study in Russia" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                 <div className="absolute inset-0 bg-gradient-to-t from-blue/90 via-blue/20 to-transparent flex items-end p-6">
                   <h3 className="text-2xl font-bold text-white tracking-wider">RUSSIA</h3>
                 </div>
-              </div>
+              </a>
             </div>
           </div>
         </div>
