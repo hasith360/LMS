@@ -43,10 +43,7 @@ export default function SignupPage() {
     <div className="min-h-screen bg-gray flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center">
         <Link href="/" className="inline-block">
-          <span className="font-bold text-3xl tracking-wider">
-            <span className="text-blue">APEX</span>
-            <span className="text-gold ml-1">LMS</span>
-          </span>
+          <img src="/logo-full.png" alt="Apex Language College" className="h-16 mx-auto object-contain rounded-lg" />
         </Link>
         <h2 className="mt-6 text-center text-3xl font-extrabold text-blue">
           Create a new account

@@ -39,10 +39,7 @@ export default function DashboardLayout({
   const SidebarContent = () => (
     <>
       <div className="h-16 flex items-center px-6 border-b border-white/10 shrink-0">
-        <span className="font-bold text-2xl tracking-wider">
-          <span className="text-white">APEX</span>
-          <span className="text-gold ml-1">LMS</span>
-        </span>
+        <img src="/logo-full.png" alt="Apex Language College" className="h-10 object-contain" />
       </div>
       
       <nav className="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
@@ -111,9 +108,7 @@ export default function DashboardLayout({
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         {/* Mobile Header */}
         <header className="md:hidden bg-blue h-16 flex items-center px-4 justify-between shadow-sm z-30 relative">
-          <span className="font-bold text-xl tracking-wider text-white">
-            APEX<span className="text-gold ml-1">LMS</span>
-          </span>
+          <img src="/logo-full.png" alt="Apex Language College" className="h-8 object-contain" />
           <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-white p-2 hover:bg-white/10 rounded-md transition-colors">
             {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
