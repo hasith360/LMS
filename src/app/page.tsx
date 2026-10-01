@@ -25,36 +25,31 @@ export default function Home() {
 
       {/* Hero Section */}
       <main>
-        <div className="relative bg-gray pt-16 pb-32 flex items-center min-h-[70vh]">
-          <div className="absolute inset-0 bg-blue/5"></div>
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-12">
+        <div className="relative pt-32 pb-40 flex items-center min-h-[80vh] justify-center overflow-hidden">
+          <HeroSlider />
+          
+          <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
             
-            <div className="text-center lg:text-left lg:w-1/2">
-              <h1 className="text-4xl tracking-tight font-extrabold text-blue sm:text-5xl md:text-6xl">
+            <div className="max-w-3xl">
+              <h1 className="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl drop-shadow-lg">
                 <span className="block">Speak Better.</span>
                 <span className="block text-gold">Go Further.</span>
               </h1>
-              <p className="mt-3 max-w-md mx-auto lg:mx-0 text-base text-blue/80 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+              <p className="mt-4 max-w-2xl mx-auto text-base text-gray-200 sm:text-lg md:mt-6 md:text-xl drop-shadow-md">
                 Master European and Asian languages with our premium online courses. 
                 Join <span className="font-bold text-gold">Apex Language College</span> today and accelerate your learning journey.
               </p>
-              <div className="mt-5 max-w-md mx-auto lg:mx-0 sm:flex sm:justify-center lg:justify-start md:mt-8">
+              <div className="mt-8 max-w-md mx-auto sm:flex sm:justify-center md:mt-10 gap-4">
                 <div className="rounded-md shadow">
                   <Link href="/courses" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-bold rounded-md text-blue bg-gold hover:bg-yellow-500 md:py-4 md:text-lg md:px-10 transition-colors">
                     Browse Courses
                   </Link>
                 </div>
-                <div className="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
-                  <Link href="/signup" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-gold bg-blue hover:bg-blue/90 md:py-4 md:text-lg md:px-10 transition-colors">
+                <div className="mt-3 sm:mt-0 rounded-md shadow">
+                  <Link href="/signup" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue/80 hover:bg-blue md:py-4 md:text-lg md:px-10 transition-colors backdrop-blur-sm">
                     Student Portal
                   </Link>
                 </div>
-              </div>
-            </div>
-
-            <div className="lg:w-1/2 flex justify-center w-full px-4 sm:px-0 mt-8 lg:mt-0">
-              <div className="w-full max-w-md transform hover:scale-[1.02] transition-transform duration-500">
-                <HeroSlider />
               </div>
             </div>
 
