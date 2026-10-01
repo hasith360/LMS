@@ -33,7 +33,7 @@ export default function Home() {
             </h1>
             <p className="mt-3 max-w-md mx-auto text-base text-blue/80 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
               Master German, French, and Italian with our premium online language courses. 
-              Join Apex Language College today and accelerate your learning journey.
+              Join <span className="font-bold text-gold">Apex Language College</span> today and accelerate your learning journey.
             </p>
             <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
               <div className="rounded-md shadow">
@@ -111,7 +111,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="bg-black text-gray py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p>&copy; {new Date().getFullYear()} Apex Language College. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} <span className="font-bold text-gold">Apex Language College</span>. All rights reserved.</p>
         </div>
       </footer>
     </div>
