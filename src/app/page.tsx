@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import HeroSlider from '@/components/HeroSlider';
+import { Youtube, Facebook, Linkedin, MessageCircle } from 'lucide-react';
 
 export default function Home() {
   return (
@@ -176,9 +177,70 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-black text-gray py-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p>&copy; {new Date().getFullYear()} <span className="font-bold text-gold">Apex Language College</span>. All rights reserved.</p>
+      <footer className="bg-gray-50 border-t border-gray/20 pt-16 pb-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
+            
+            {/* Column 1: Logo & Info */}
+            <div className="space-y-4">
+              <img src="/logo-full.png" alt="Apex Language College" className="h-10 object-contain" />
+              <p className="text-sm text-blue/70">
+                Master European and Asian languages with our premium online courses.
+              </p>
+              <div className="flex space-x-3 pt-2">
+                <a href="#" className="text-red-600 hover:opacity-80 transition-opacity">
+                  <Youtube className="w-6 h-6" fill="currentColor" />
+                </a>
+                <a href="#" className="text-blue-600 hover:opacity-80 transition-opacity">
+                  <Facebook className="w-6 h-6" fill="currentColor" />
+                </a>
+                <a href="#" className="text-green-600 hover:opacity-80 transition-opacity">
+                  <MessageCircle className="w-6 h-6" fill="currentColor" />
+                </a>
+                <a href="#" className="text-blue-700 hover:opacity-80 transition-opacity">
+                  <Linkedin className="w-6 h-6" fill="currentColor" />
+                </a>
+              </div>
+            </div>
+
+            {/* Column 2: Services */}
+            <div>
+              <h3 className="text-lg font-bold text-blue mb-4">Services</h3>
+              <ul className="space-y-3">
+                <li><Link href="/courses" className="text-sm text-blue/70 hover:text-gold transition-colors">Courses</Link></li>
+                <li><Link href="/signup" className="text-sm text-blue/70 hover:text-gold transition-colors">Student Portal</Link></li>
+              </ul>
+            </div>
+
+            {/* Column 3: Institute */}
+            <div>
+              <h3 className="text-lg font-bold text-blue mb-4">Institute</h3>
+              <ul className="space-y-3 text-sm text-blue/70">
+                <li className="flex items-start">
+                  <span className="font-semibold mr-2 w-12">Phone</span>
+                  <a href="tel:+94771234567" className="hover:text-gold transition-colors">+94 77 123 4567</a>
+                </li>
+                <li className="flex items-start">
+                  <span className="font-semibold mr-2 w-12">Email</span>
+                  <a href="mailto:apexlanguagecollege@gmail.com" className="hover:text-gold transition-colors break-all">apexlanguagecollege@gmail.com</a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Column 4: Help */}
+            <div>
+              <h3 className="text-lg font-bold text-blue mb-4">Help</h3>
+              <ul className="space-y-3">
+                <li><Link href="#" className="text-sm text-blue/70 hover:text-gold transition-colors">FAQ</Link></li>
+                <li><Link href="#" className="text-sm text-blue/70 hover:text-gold transition-colors">Contact Us</Link></li>
+              </ul>
+            </div>
+            
+          </div>
+
+          <div className="mt-12 pt-8 border-t border-gray/20 text-center sm:text-left text-sm text-blue/50 flex flex-col sm:flex-row justify-between items-center">
+            <p>&copy; {new Date().getFullYear()} All rights reserved | Powered by Apex LMS</p>
+          </div>
         </div>
       </footer>
     </div>
