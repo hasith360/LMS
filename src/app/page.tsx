@@ -24,29 +24,38 @@ export default function Home() {
 
       {/* Hero Section */}
       <main>
-        <div className="relative bg-gray pt-16 pb-32 flex items-center justify-center min-h-[70vh]">
+        <div className="relative bg-gray pt-16 pb-32 flex items-center min-h-[70vh]">
           <div className="absolute inset-0 bg-blue/5"></div>
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl tracking-tight font-extrabold text-blue sm:text-5xl md:text-6xl">
-              <span className="block">Speak Better.</span>
-              <span className="block text-gold">Go Further.</span>
-            </h1>
-            <p className="mt-3 max-w-md mx-auto text-base text-blue/80 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-              Master German, French, and Italian with our premium online language courses. 
-              Join <span className="font-bold text-gold">Apex Language College</span> today and accelerate your learning journey.
-            </p>
-            <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
-              <div className="rounded-md shadow">
-                <Link href="/courses" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-bold rounded-md text-blue bg-gold hover:bg-yellow-500 md:py-4 md:text-lg md:px-10 transition-colors">
-                  Browse Courses
-                </Link>
-              </div>
-              <div className="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
-                <Link href="/signup" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-gold bg-blue hover:bg-blue/90 md:py-4 md:text-lg md:px-10 transition-colors">
-                  Student Portal
-                </Link>
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-12">
+            
+            <div className="text-center lg:text-left lg:w-1/2">
+              <h1 className="text-4xl tracking-tight font-extrabold text-blue sm:text-5xl md:text-6xl">
+                <span className="block">Speak Better.</span>
+                <span className="block text-gold">Go Further.</span>
+              </h1>
+              <p className="mt-3 max-w-md mx-auto lg:mx-0 text-base text-blue/80 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+                Master German, French, and Italian with our premium online language courses. 
+                Join <span className="font-bold text-gold">Apex Language College</span> today and accelerate your learning journey.
+              </p>
+              <div className="mt-5 max-w-md mx-auto lg:mx-0 sm:flex sm:justify-center lg:justify-start md:mt-8">
+                <div className="rounded-md shadow">
+                  <Link href="/courses" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-bold rounded-md text-blue bg-gold hover:bg-yellow-500 md:py-4 md:text-lg md:px-10 transition-colors">
+                    Browse Courses
+                  </Link>
+                </div>
+                <div className="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
+                  <Link href="/signup" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-gold bg-blue hover:bg-blue/90 md:py-4 md:text-lg md:px-10 transition-colors">
+                    Student Portal
+                  </Link>
+                </div>
               </div>
             </div>
+
+            <div className="lg:w-1/2 flex gap-4 w-full px-4 sm:px-0 mt-8 lg:mt-0">
+              <img src="/images/passports.jpg" alt="Travel Passports" className="w-1/2 object-cover aspect-[3/4] rounded-2xl shadow-2xl transform rotate-[-3deg] hover:rotate-0 transition-transform duration-300" />
+              <img src="/images/airplane.jpg" alt="Airplane" className="w-1/2 object-cover aspect-[3/4] rounded-2xl shadow-2xl transform rotate-[3deg] translate-y-6 hover:rotate-0 transition-transform duration-300" />
+            </div>
+
           </div>
         </div>
 
@@ -102,6 +111,41 @@ export default function Home() {
                   </p>
                 </div>
 
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Destinations Section */}
+        <div className="py-16 bg-gray">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-base text-gold font-semibold tracking-wide uppercase">Study Abroad</h2>
+              <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-blue sm:text-4xl">
+                Your pathway to Europe
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="relative rounded-2xl overflow-hidden shadow-lg group aspect-[4/5]">
+                <img src="/images/germany.jpg" alt="Study in Germany" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-blue/90 via-blue/20 to-transparent flex items-end p-6">
+                  <h3 className="text-2xl font-bold text-white tracking-wider">GERMANY</h3>
+                </div>
+              </div>
+
+              <div className="relative rounded-2xl overflow-hidden shadow-lg group aspect-[4/5]">
+                <img src="/images/france.jpg" alt="Study in France" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-blue/90 via-blue/20 to-transparent flex items-end p-6">
+                  <h3 className="text-2xl font-bold text-white tracking-wider">FRANCE</h3>
+                </div>
+              </div>
+
+              <div className="relative rounded-2xl overflow-hidden shadow-lg group aspect-[4/5]">
+                <img src="/images/italy.jpg" alt="Study in Italy" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-blue/90 via-blue/20 to-transparent flex items-end p-6">
+                  <h3 className="text-2xl font-bold text-white tracking-wider">ITALY</h3>
+                </div>
               </div>
             </div>
           </div>
