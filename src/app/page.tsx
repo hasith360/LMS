@@ -5,18 +5,32 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       {/* Navbar */}
-      <header className="bg-blue text-white shadow-md">
+      <header className="bg-white text-blue shadow-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16 items-center">
+          <div className="flex justify-between h-20 items-center">
+            {/* Logo */}
             <div className="flex-shrink-0 flex items-center">
-              <img src="/logo-full.png" alt="Apex Language College" className="h-14 object-contain" />
+              <Link href="/">
+                <img src="/logo-full.png" alt="Apex Language College" className="h-16 object-contain" />
+              </Link>
             </div>
-            <div className="flex space-x-4">
-              <Link href="/login" className="text-gray hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">
+
+            {/* Center Navigation */}
+            <nav className="hidden lg:flex space-x-8">
+              <Link href="/" className="text-blue/80 hover:text-gold font-semibold transition-colors">Home</Link>
+              <Link href="/courses" className="text-blue/80 hover:text-gold font-semibold transition-colors">Courses</Link>
+              <Link href="#" className="text-blue/80 hover:text-gold font-semibold transition-colors">Study Abroad</Link>
+              <Link href="#" className="text-blue/80 hover:text-gold font-semibold transition-colors">About Us</Link>
+              <Link href="#" className="text-blue/80 hover:text-gold font-semibold transition-colors">Contact</Link>
+            </nav>
+
+            {/* Right side buttons */}
+            <div className="flex items-center space-x-2 sm:space-x-4">
+              <Link href="/login" className="hidden sm:block text-blue/80 hover:text-gold px-3 py-2 text-sm font-bold transition-colors">
                 Log In
               </Link>
-              <Link href="/signup" className="bg-gold text-blue hover:bg-yellow-500 px-4 py-2 rounded-md text-sm font-bold transition-colors">
-                Sign Up
+              <Link href="/signup" className="bg-blue text-gold hover:bg-blue/90 px-5 py-2.5 rounded-md text-sm font-bold transition-colors shadow-sm uppercase tracking-wide">
+                Register / Login
               </Link>
             </div>
           </div>
