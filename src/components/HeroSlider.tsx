@@ -2,11 +2,9 @@
 import { useState, useEffect } from 'react';
 
 const images = [
-  { src: '/images/hero-bg1.png', alt: 'World Landmarks' },
-  { src: '/images/hero-bg2.png', alt: 'Travel Map and Accessories' },
-  { src: '/images/hero-bg3.png', alt: 'European Cities' },
-  { src: '/images/hero-bg4.jpg', alt: 'SriLankan Airlines' },
-  { src: '/images/hero-bg5.png', alt: 'Global Monuments' },
+  { src: '/images/passports.jpg', alt: 'Travel Passports' },
+  { src: '/images/hostess.jpg', alt: 'Cabin Crew' },
+  { src: '/images/airplane.jpg', alt: 'Airplane' },
 ];
 
 export default function HeroSlider() {
@@ -20,10 +18,7 @@ export default function HeroSlider() {
   }, []);
 
   return (
-    <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
-      {/* Dark overlay for text readability */}
-      <div className="absolute inset-0 bg-black/60 z-10"></div>
-      
+    <div className="relative w-full aspect-[4/3] sm:aspect-[3/4] md:aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
       {images.map((img, index) => (
         <img
           key={img.src}
@@ -34,6 +29,21 @@ export default function HeroSlider() {
           }`}
         />
       ))}
+      {/* Dot Indicators */}
+      <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-3 z-10">
+        {images.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentIndex(index)}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              index === currentIndex 
+                ? 'bg-gold w-6' 
+                : 'bg-white/60 hover:bg-white'
+            }`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
     </div>
   );
 }
