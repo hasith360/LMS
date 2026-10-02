@@ -19,8 +19,8 @@ export default function Home() {
             <nav className="hidden lg:flex space-x-8">
               <Link href="/" className="text-blue/80 hover:text-gold font-semibold transition-colors">Home</Link>
               <Link href="/courses" className="text-blue/80 hover:text-gold font-semibold transition-colors">Courses</Link>
-              <Link href="#" className="text-blue/80 hover:text-gold font-semibold transition-colors">Study Abroad</Link>
-              <Link href="#" className="text-blue/80 hover:text-gold font-semibold transition-colors">About Us</Link>
+              <Link href="#study-abroad" className="text-blue/80 hover:text-gold font-semibold transition-colors">Study Abroad</Link>
+              <Link href="#about" className="text-blue/80 hover:text-gold font-semibold transition-colors">About Us</Link>
               <Link href="#" className="text-blue/80 hover:text-gold font-semibold transition-colors">Contact</Link>
             </nav>
 
@@ -195,7 +195,7 @@ export default function Home() {
         </div>
         
         {/* Destinations Section */}
-        <div className="py-16 bg-gray">
+        <div id="study-abroad" className="py-16 bg-gray">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-base text-gold font-semibold tracking-wide uppercase">Study Abroad</h2>
