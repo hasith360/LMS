@@ -7,11 +7,11 @@ export default function Home() {
       {/* Navbar */}
       <header className="bg-white text-blue shadow-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-20 items-center">
+          <div className="flex justify-between h-24 items-center">
             {/* Logo */}
             <div className="flex-shrink-0 flex items-center">
               <Link href="/">
-                <img src="/logo-full.png" alt="Apex Language College" className="h-16 object-contain" />
+                <img src="/logo-full.png" alt="Apex Language College" className="h-20 object-contain" />
               </Link>
             </div>
 
@@ -26,9 +26,6 @@ export default function Home() {
 
             {/* Right side buttons */}
             <div className="flex items-center space-x-2 sm:space-x-4">
-              <Link href="/login" className="hidden sm:block text-blue/80 hover:text-gold px-3 py-2 text-sm font-bold transition-colors">
-                Log In
-              </Link>
               <Link href="/signup" className="bg-blue text-gold hover:bg-blue/90 px-5 py-2.5 rounded-md text-sm font-bold transition-colors shadow-sm uppercase tracking-wide">
                 Register / Login
               </Link>

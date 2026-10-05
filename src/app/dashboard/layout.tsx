@@ -38,8 +38,8 @@ export default function DashboardLayout({
 
   const SidebarContent = () => (
     <>
-      <div className="h-20 flex items-center justify-center border-b border-white/10 shrink-0">
-        <img src="/logo-full.png" alt="Apex Language College" className="h-14 object-contain" />
+      <div className="h-24 flex items-center justify-center border-b border-white/10 shrink-0">
+        <img src="/logo-full.png" alt="Apex Language College" className="h-16 object-contain" />
       </div>
       
       <nav className="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
