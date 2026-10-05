@@ -154,9 +154,9 @@ export default function Home() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                     </svg>
                   </div>
-                  <h3 className="text-lg font-medium text-blue">High-Quality Video Lessons</h3>
+                  <h3 className="text-lg font-medium text-blue">Live Class Recordings Guarantee</h3>
                   <p className="mt-2 text-base text-blue/70">
-                    Learn at your own pace with professionally recorded video lessons from expert native speakers.
+                    Never miss a lesson. We guarantee access to all live class recordings. If unavailable, we provide a dedicated make-up class.
                   </p>
                 </div>
 
@@ -298,7 +298,7 @@ export default function Home() {
               <ul className="space-y-3 text-sm text-blue/70">
                 <li className="flex items-start">
                   <span className="font-semibold mr-2 w-12">Phone</span>
-                  <a href="tel:+94771234567" className="hover:text-gold transition-colors">+94 77 123 4567</a>
+                  <a href="tel:0751373448" className="hover:text-gold transition-colors">075 137 3448</a>
                 </li>
                 <li className="flex items-start">
                   <span className="font-semibold mr-2 w-12">Email</span>
