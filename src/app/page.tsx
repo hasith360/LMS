@@ -233,14 +233,14 @@ export default function Home() {
                 </div>
               </a>
 
-              <a href="#" className="relative rounded-2xl overflow-hidden shadow-lg group aspect-[4/5] block cursor-pointer">
+              <a href="/pdfs/china.pdf" target="_blank" rel="noopener noreferrer" className="relative rounded-2xl overflow-hidden shadow-lg group aspect-[4/5] block cursor-pointer">
                 <img src="/images/china.jpg" alt="Study in China" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                 <div className="absolute inset-0 bg-gradient-to-t from-blue/90 via-blue/20 to-transparent flex items-end p-6">
                   <h3 className="text-2xl font-bold text-white tracking-wider">CHINA</h3>
                 </div>
               </a>
 
-              <a href="#" className="relative rounded-2xl overflow-hidden shadow-lg group aspect-[4/5] block cursor-pointer">
+              <a href="/pdfs/russia.pdf" target="_blank" rel="noopener noreferrer" className="relative rounded-2xl overflow-hidden shadow-lg group aspect-[4/5] block cursor-pointer">
                 <img src="/images/russia.jpg" alt="Study in Russia" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                 <div className="absolute inset-0 bg-gradient-to-t from-blue/90 via-blue/20 to-transparent flex items-end p-6">
                   <h3 className="text-2xl font-bold text-white tracking-wider">RUSSIA</h3>
