@@ -7,6 +7,7 @@ import { supabase } from '@/lib/supabase';
 export default function AdminDashboard() {
   const [students, setStudents] = useState<any[]>([]);
   const [courses, setCourses] = useState<any[]>([]);
+  const [teachersCount, setTeachersCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [userName, setUserName] = useState('Admin');
 
@@ -38,6 +39,12 @@ export default function AdminDashboard() {
       .select('*')
       .eq('role', 'student');
       
+    // Fetch teachers count
+    const { count: tCount } = await supabase
+      .from('profiles')
+      .select('*', { count: 'exact', head: true })
+      .eq('role', 'teacher');
+      
     // Fetch all courses
     const { data: courseData } = await supabase
       .from('courses')
@@ -46,6 +53,7 @@ export default function AdminDashboard() {
 
     if (studentData) setStudents(studentData);
     if (courseData) setCourses(courseData);
+    if (tCount !== null) setTeachersCount(tCount);
     
     if (studentData && courseData && studentData.length > 0 && courseData.length > 0) {
       setEnrollment({ student_id: studentData[0].id, course_id: courseData[0].id });
@@ -134,7 +142,7 @@ export default function AdminDashboard() {
           <div className="flex justify-between items-start">
             <div>
               <p className="text-white/80 text-sm font-medium mb-1">Total Teachers</p>
-              <h3 className="text-4xl font-bold">23</h3>
+              <h3 className="text-4xl font-bold">{teachersCount}</h3>
             </div>
             <div className="bg-white/20 p-3 rounded-full">
               <Users className="h-6 w-6" />
@@ -307,7 +315,9 @@ export default function AdminDashboard() {
                     className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue/50 text-sm bg-gray-50"
                   >
                     {students.map(s => (
-                      <option key={s.id} value={s.id}>{s.full_name || s.email}</option>
+                      <option key={s.id} value={s.id}>
+                        {s.full_name ? `${s.full_name} (${s.email})` : s.email}
+                      </option>
                     ))}
                   </select>
                 </div>
