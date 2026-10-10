@@ -7,6 +7,7 @@ import { supabase } from '@/lib/supabase';
 export default function AdminDashboard() {
   const [students, setStudents] = useState<any[]>([]);
   const [courses, setCourses] = useState<any[]>([]);
+  const [teachers, setTeachers] = useState<any[]>([]);
   const [teachersCount, setTeachersCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [userName, setUserName] = useState('Admin');
@@ -14,6 +15,10 @@ export default function AdminDashboard() {
   // Enrollment Form State
   const [enrollment, setEnrollment] = useState({ student_id: '', course_id: '' });
   const [status, setStatus] = useState('');
+
+  // New Course Form State
+  const [newCourse, setNewCourse] = useState({ title: '', language: '', level: 'Beginner', teacher_id: '' });
+  const [courseStatus, setCourseStatus] = useState('');
 
   useEffect(() => {
     const init = async () => {
@@ -39,10 +44,10 @@ export default function AdminDashboard() {
       .select('*')
       .eq('role', 'student');
       
-    // Fetch teachers count
-    const { count: tCount } = await supabase
+    // Fetch teachers list and count
+    const { data: teacherData, count: tCount } = await supabase
       .from('profiles')
-      .select('*', { count: 'exact', head: true })
+      .select('*', { count: 'exact' })
       .eq('role', 'teacher');
       
     // Fetch all courses
@@ -53,10 +58,14 @@ export default function AdminDashboard() {
 
     if (studentData) setStudents(studentData);
     if (courseData) setCourses(courseData);
+    if (teacherData) setTeachers(teacherData);
     if (tCount !== null) setTeachersCount(tCount);
     
     if (studentData && courseData && studentData.length > 0 && courseData.length > 0) {
-      setEnrollment({ student_id: studentData[0].id, course_id: courseData[0].id });
+      setEnrollment(prev => ({ ...prev, student_id: prev.student_id || studentData[0].id, course_id: prev.course_id || courseData[0].id }));
+    }
+    if (teacherData && teacherData.length > 0) {
+      setNewCourse(prev => ({ ...prev, teacher_id: prev.teacher_id || teacherData[0].id }));
     }
     
     setLoading(false);
@@ -87,6 +96,35 @@ export default function AdminDashboard() {
     } else {
       setStatus('Successfully Enrolled!');
       setTimeout(() => setStatus(''), 3000);
+    }
+  };
+
+  const handleCreateCourse = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setCourseStatus('Creating...');
+
+    if (!newCourse.teacher_id) {
+      setCourseStatus('Error: Please select a teacher.');
+      return;
+    }
+
+    const { error } = await supabase.from('courses').insert([
+      {
+        teacher_id: newCourse.teacher_id,
+        title: newCourse.title,
+        language: newCourse.language,
+        level: newCourse.level,
+        status: 'Published'
+      }
+    ]);
+
+    if (error) {
+      setCourseStatus('Error: ' + error.message);
+    } else {
+      setCourseStatus('Course Created Successfully!');
+      setNewCourse({ title: '', language: '', level: 'Beginner', teacher_id: teachers[0]?.id || '' });
+      fetchData(); // refresh courses list
+      setTimeout(() => setCourseStatus(''), 3000);
     }
   };
 
@@ -395,6 +433,89 @@ export default function AdminDashboard() {
         </div>
 
       </div>
+
+      {/* Course Management Section */}
+      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mt-6">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-lg font-bold text-gray-800">Create New Course & Assign Teacher</h2>
+          <BookOpen className="h-5 w-5 text-gray-400" />
+        </div>
+
+        {teachers.length === 0 ? (
+          <p className="text-gray-500 italic text-sm">You need at least 1 registered teacher to create a course.</p>
+        ) : (
+          <form onSubmit={handleCreateCourse} className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div className="md:col-span-2">
+                <label className="block text-xs font-bold text-gray-500 mb-1 uppercase tracking-wide">Course Title</label>
+                <input 
+                  required 
+                  type="text" 
+                  value={newCourse.title} 
+                  onChange={e => setNewCourse({...newCourse, title: e.target.value})} 
+                  placeholder="e.g. German A1: Absolute Beginner" 
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500/50 text-sm bg-gray-50" 
+                />
+              </div>
+              
+              <div>
+                <label className="block text-xs font-bold text-gray-500 mb-1 uppercase tracking-wide">Language</label>
+                <input 
+                  required 
+                  type="text" 
+                  value={newCourse.language} 
+                  onChange={e => setNewCourse({...newCourse, language: e.target.value})} 
+                  placeholder="e.g. German" 
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500/50 text-sm bg-gray-50" 
+                />
+              </div>
+              
+              <div>
+                <label className="block text-xs font-bold text-gray-500 mb-1 uppercase tracking-wide">Level</label>
+                <select 
+                  value={newCourse.level} 
+                  onChange={e => setNewCourse({...newCourse, level: e.target.value})} 
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500/50 text-sm bg-gray-50"
+                >
+                  <option>Beginner</option>
+                  <option>Intermediate</option>
+                  <option>Advanced</option>
+                </select>
+              </div>
+
+              <div className="md:col-span-2">
+                <label className="block text-xs font-bold text-gray-500 mb-1 uppercase tracking-wide">Assign Teacher</label>
+                <select 
+                  required
+                  value={newCourse.teacher_id} 
+                  onChange={e => setNewCourse({...newCourse, teacher_id: e.target.value})} 
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500/50 text-sm bg-gray-50"
+                >
+                  <option value="" disabled>Select a teacher...</option>
+                  {teachers.map(t => (
+                    <option key={t.id} value={t.id}>
+                      {t.full_name ? `${t.full_name} (${t.email})` : t.email}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            <div className="pt-2">
+              <button type="submit" className="bg-[#9c4cff] text-white font-bold py-2 px-6 rounded-lg hover:bg-purple-600 transition-colors text-sm shadow-md shadow-purple-500/30">
+                Create Course
+              </button>
+            </div>
+
+            {courseStatus && (
+              <div className={`p-3 mt-4 text-sm font-bold rounded-lg ${courseStatus.includes('Error') ? 'bg-red-50 text-red-600' : 'bg-green-50 text-green-600'}`}>
+                {courseStatus}
+              </div>
+            )}
+          </form>
+        )}
+      </div>
+
     </div>
   );
 }
