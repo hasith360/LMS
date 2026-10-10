@@ -28,6 +28,31 @@ export default function AdminDashboard() {
           window.location.href = `/dashboard/${user.user_metadata?.role || 'student'}`;
           return;
         }
+
+        // Device Limit Logic for Admins
+        let deviceId = localStorage.getItem('apex_admin_device_id');
+        if (!deviceId) {
+          deviceId = Math.random().toString(36).substring(2, 15);
+          localStorage.setItem('apex_admin_device_id', deviceId);
+        }
+
+        let adminDevices = user.user_metadata?.admin_devices || [];
+        
+        if (!adminDevices.includes(deviceId)) {
+          if (adminDevices.length >= 3) {
+            // Reject Access
+            await supabase.auth.signOut();
+            window.location.href = '/login?error=DeviceLimitReached';
+            return;
+          } else {
+            // Add device to allowed list
+            adminDevices.push(deviceId);
+            await supabase.auth.updateUser({
+              data: { admin_devices: adminDevices }
+            });
+          }
+        }
+
         setUserName(user.user_metadata?.full_name?.split(' ')[0] || 'Admin');
         fetchData();
       } else {
