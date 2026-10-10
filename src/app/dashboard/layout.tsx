@@ -68,11 +68,11 @@ export default function DashboardLayout({
         
         <div className="h-4"></div>
         
-        <Link href="/profile" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center px-4 py-3 text-sm font-medium rounded-md text-white/70 hover:bg-white/5 hover:text-white transition-colors">
+        <Link href="/dashboard/profile" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center px-4 py-3 text-sm font-medium rounded-md text-white/70 hover:bg-white/5 hover:text-white transition-colors">
           <User className="mr-3 h-5 w-5" />
           Profile
         </Link>
-        <Link href="/settings" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center px-4 py-3 text-sm font-medium rounded-md text-white/70 hover:bg-white/5 hover:text-white transition-colors">
+        <Link href="/dashboard/settings" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center px-4 py-3 text-sm font-medium rounded-md text-white/70 hover:bg-white/5 hover:text-white transition-colors">
           <Settings className="mr-3 h-5 w-5" />
           Settings
         </Link>
