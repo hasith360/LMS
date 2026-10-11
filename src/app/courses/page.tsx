@@ -45,7 +45,10 @@ export default function CoursesPage() {
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray/20 hover:shadow-xl transition-shadow flex flex-col">
               <div className="relative h-64 sm:h-80 w-full bg-gray-100">
                 <img src="/images/german-for-kids.jpg" alt="German for Kids" className="w-full h-full object-cover object-top" />
-                <div className="absolute top-4 right-4 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow">
+                <div className="absolute top-4 left-4 bg-red-600 text-white text-xs font-black tracking-wider px-3 py-1 rounded-full shadow uppercase">
+                  Limited Time Offer
+                </div>
+                <div className="absolute top-4 right-4 bg-blue text-white text-xs font-bold px-3 py-1 rounded-full shadow">
                   NOVEMBER INTAKE
                 </div>
               </div>
@@ -54,7 +57,7 @@ export default function CoursesPage() {
                 <div className="flex justify-between items-start mb-4">
                   <div>
                     <h2 className="text-2xl font-extrabold text-blue">German for Kids</h2>
-                    <p className="text-gold font-bold mt-1">Grade 3 to 9</p>
+                    <p className="text-gold font-bold mt-1">Grade 03 to 09</p>
                   </div>
                   <span className="bg-blue/10 text-blue text-xs font-bold px-2 py-1 rounded">3 Months</span>
                 </div>
@@ -62,30 +65,41 @@ export default function CoursesPage() {
                 <ul className="space-y-2 mb-6 flex-grow">
                   <li className="flex items-start text-sm text-blue/80">
                     <svg className="h-5 w-5 text-green-500 mr-2 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                    Fun & Interactive Lessons with Games & Songs
+                    Fun & Interactive lessons
                   </li>
                   <li className="flex items-start text-sm text-blue/80">
                     <svg className="h-5 w-5 text-green-500 mr-2 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                    Build Speaking, Listening, Reading & Writing Skills
+                    Build speaking, listening, reading & writing skills
                   </li>
                   <li className="flex items-start text-sm text-blue/80">
                     <svg className="h-5 w-5 text-green-500 mr-2 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                    Conducted by State Certified MA/BA German Instructors
+                    Learn with games, songs & activities
                   </li>
                   <li className="flex items-start text-sm text-blue/80">
                     <svg className="h-5 w-5 text-green-500 mr-2 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                    Certificate Provided upon completion
+                    Strong foundation for future opportunities
+                  </li>
+                  <li className="flex items-start text-sm text-blue/80">
+                    <svg className="h-5 w-5 text-green-500 mr-2 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                    Conducted by Experienced Apex German Instructor
+                  </li>
+                  <li className="flex items-start text-sm text-blue/80 font-semibold text-gold">
+                    <svg className="h-5 w-5 text-gold mr-2 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" /></svg>
+                    Certificate Provided
                   </li>
                 </ul>
 
-                <div className="bg-gray-50 rounded-lg p-4 mb-6 border border-gray/20">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-sm font-semibold text-blue/70">Full Course Fee</span>
-                    <span className="text-xl font-black text-blue">Rs. 10,000</span>
+                <div className="bg-red-50/50 rounded-xl p-4 mb-6 border border-red-200">
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="text-sm font-semibold text-blue/70">Course Fee</span>
+                    <div className="text-right">
+                      <span className="text-xs text-gray-400 line-through mr-2">Rs. 10,000</span>
+                      <span className="text-2xl font-black text-red-600">Rs. 7,500/=</span>
+                    </div>
                   </div>
-                  <div className="text-xs text-blue/60 flex justify-between">
-                    <span>1st Installment: 6,000</span>
-                    <span>2nd Installment: 4,000</span>
+                  <div className="text-xs font-bold text-red-600 flex justify-between items-center pt-1 border-t border-red-100">
+                    <span>SPECIAL OFFER</span>
+                    <span>ALL-INCLUSIVE</span>
                   </div>
                 </div>
 
