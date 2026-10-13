@@ -34,9 +34,9 @@ export const metadata: Metadata = {
     siteName: "Apex Language College",
     images: [
       {
-        url: "/logo-icon.png",
-        width: 1024,
-        height: 1024,
+        url: "/icon-512.png",
+        width: 512,
+        height: 512,
         alt: "Apex Language College Logo",
       },
     ],
