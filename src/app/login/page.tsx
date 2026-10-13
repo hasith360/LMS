@@ -23,27 +23,37 @@ export default function LoginPage() {
     setLoading(true);
     setError('');
 
-    const { data, error: authError } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+    try {
+      const { data, error: authError } = await supabase.auth.signInWithPassword({
+        email: email.trim(),
+        password,
+      });
 
-    if (authError) {
-      setError(authError.message);
+      if (authError) {
+        setError(authError.message);
+        setLoading(false);
+        return;
+      }
+
+      // Determine role from user metadata or profile
+      let role = data.user?.user_metadata?.role;
+      if (!role && data.user?.id) {
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select('role')
+          .eq('id', data.user.id)
+          .single();
+        if (profile?.role) {
+          role = profile.role;
+        }
+      }
+      role = role || 'student';
+      
+      // Redirect to the appropriate dashboard
+      window.location.href = `/dashboard/${role}`;
+    } catch (err: any) {
+      setError(err?.message || 'An unexpected error occurred. Please try again.');
       setLoading(false);
-      return;
-    }
-
-    // Determine role from user metadata
-    const role = data.user?.user_metadata?.role || 'student';
-    
-    // Redirect to the appropriate dashboard
-    if (role === 'admin') {
-      router.push('/dashboard/admin');
-    } else if (role === 'teacher') {
-      router.push('/dashboard/teacher');
-    } else {
-      router.push('/dashboard/student');
     }
   };
 

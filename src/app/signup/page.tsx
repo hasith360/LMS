@@ -36,7 +36,7 @@ export default function SignupPage() {
     }
 
     // Redirect to the appropriate dashboard
-    router.push(`/dashboard/${role}`);
+    window.location.href = `/dashboard/${role}`;
   };
 
   return (
